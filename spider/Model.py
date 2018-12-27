@@ -30,3 +30,15 @@ class Country(object):
 
     def set_en_name(self, name):
         setattr(self, 'en_name', name)
+
+
+class City(object):
+
+    def __init__(self, name):
+        self.name = name
+
+    def get_en_name(self):
+        getattr(self, 'en_name')
+
+    def set_en_name(self, name):
+        setattr(self, 'en_name', name)
