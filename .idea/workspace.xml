@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8608305a-7d29-42a9-a3cf-1782df8a7e6e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spider/config.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/timezoneSpider.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/timezoneSpider.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider/Model.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider/Model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spider/Spider.py" beforeDir="false" afterPath="$PROJECT_DIR$/spider/Spider.py" afterDir="false" />
     </list>
@@ -34,13 +31,13 @@
         <counts>
           <entry key="Python Console" value="36" />
           <entry key="dummy" value="7" />
-          <entry key="py" value="3918" />
+          <entry key="py" value="4282" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="7" />
-          <entry key="Python" value="3954" />
+          <entry key="Python" value="4318" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -61,14 +58,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spider/Spider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="43" column="80" lean-forward="true" selection-start-line="43" selection-start-column="80" selection-end-line="43" selection-end-column="80" />
+            <state relative-caret-position="240">
+              <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="66" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
-                <marker date="1548051848077" expanded="true" signature="651:708" ph="..." />
+                <marker date="1548138255392" expanded="true" signature="651:708" ph="..." />
               </folding>
             </state>
           </provider>
@@ -113,17 +110,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spider/Model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1160">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="25" />
+            <state relative-caret-position="380">
+              <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
               <folding>
                 <element signature="e#25#36#0" expanded="true" />
-                <marker date="1548049321321" expanded="true" signature="370:940" ph="..." />
-                <marker date="1548049321321" expanded="true" signature="517:523" ph="..." />
-                <marker date="1548049321321" expanded="true" signature="1239:1244" ph="..." />
-                <marker date="1548049321321" expanded="true" signature="5645:5654" ph="..." />
+                <marker date="1548151337269" expanded="true" signature="1898:2044" ph="..." />
+                <marker date="1548151337269" expanded="true" signature="2065:2635" ph="..." />
+                <marker date="1548151337269" expanded="true" signature="2212:2218" ph="..." />
+                <marker date="1548151337269" expanded="true" signature="2934:2939" ph="..." />
+                <marker date="1548151337269" expanded="true" signature="7340:7349" ph="..." />
               </folding>
             </state>
           </provider>
@@ -152,8 +150,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spider/Model.py" />
         <option value="$PROJECT_DIR$/spider/Spider.py" />
+        <option value="$PROJECT_DIR$/spider/Model.py" />
       </list>
     </option>
   </component>
@@ -313,7 +311,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/spider/Model.py</url>
-          <line>100</line>
+          <line>132</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -459,27 +457,28 @@
     <entry file="file://$PROJECT_DIR$/spider/config.ini">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/spider/Model.py">
+    <entry file="file://$PROJECT_DIR$/spider/Spider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1160">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="25" />
+        <state relative-caret-position="240">
+          <caret line="38" column="56" lean-forward="true" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="66" />
           <folding>
-            <element signature="e#25#36#0" expanded="true" />
-            <marker date="1548049321321" expanded="true" signature="370:940" ph="..." />
-            <marker date="1548049321321" expanded="true" signature="517:523" ph="..." />
-            <marker date="1548049321321" expanded="true" signature="1239:1244" ph="..." />
-            <marker date="1548049321321" expanded="true" signature="5645:5654" ph="..." />
+            <element signature="e#24#35#0" expanded="true" />
+            <marker date="1548138255392" expanded="true" signature="651:708" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spider/Spider.py">
+    <entry file="file://$PROJECT_DIR$/spider/Model.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="43" column="80" lean-forward="true" selection-start-line="43" selection-start-column="80" selection-end-line="43" selection-end-column="80" />
+        <state relative-caret-position="380">
+          <caret line="35" column="60" selection-start-line="35" selection-start-column="60" selection-end-line="35" selection-end-column="60" />
           <folding>
-            <element signature="e#24#35#0" expanded="true" />
-            <marker date="1548051848077" expanded="true" signature="651:708" ph="..." />
+            <element signature="e#25#36#0" expanded="true" />
+            <marker date="1548151337269" expanded="true" signature="1898:2044" ph="..." />
+            <marker date="1548151337269" expanded="true" signature="2065:2635" ph="..." />
+            <marker date="1548151337269" expanded="true" signature="2212:2218" ph="..." />
+            <marker date="1548151337269" expanded="true" signature="2934:2939" ph="..." />
+            <marker date="1548151337269" expanded="true" signature="7340:7349" ph="..." />
           </folding>
         </state>
       </provider>

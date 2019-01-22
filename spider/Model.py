@@ -5,15 +5,47 @@ import re
 
 
 class TimeZone(object):
-    __attrs__ = ['description', 'country', 'code', 'name', 'link', 'utc_timezone']
+    __attrs__ = ['description', 'iana_timezone', 'code', 'name', 'link', 'utc_timezone']
 
     def __init__(self):
         self.code = None
         self.name = None
         self.description = None
-        self.country = []
+        self.iana_timezone = []
         self.link = None
         self.utc_timezone = None
+
+    def get_time_zone_detailed_info(self, soup):
+        time_zone_detailed_info_soup = soup.find('div', class_='dataBlock dBColor3')
+        time_zone_detailed_info = time_zone_detailed_info_soup.find_all('div', class_='infoRow')
+        time_zone_detailed_info_title = time_zone_detailed_info_soup.find_all('h3', class_='infoRowTitle')
+        # print(time_zone_detailed_info)
+        if len(time_zone_detailed_info) > 2 and len(time_zone_detailed_info_title) > 2:
+            if self.code + " " in time_zone_detailed_info_title[0].text:
+                self.description = time_zone_detailed_info[0].text.strip()
+            if 'GMT' in time_zone_detailed_info_title[1].text:
+                self.utc_timezone = time_zone_detailed_info[1].text.strip().replace(" ", "")
+            if 'IANA' in time_zone_detailed_info_title[2].text:
+                iana_time_zone_table = time_zone_detailed_info[1].find('table', class_='dataTab1 genericBlock')
+                iana_time_zone_td_list = iana_time_zone_table.find_all('td')
+                iana_timezone_list = []
+                for iana_time_zone in iana_time_zone_td_list:
+                    iana_timezone = IANATimeZone()
+                    iana_timezone.link = iana_time_zone.a['href']
+                    iana_timezone.title = iana_time_zone.a['title']
+                    iana_timezone.name = iana_time_zone.text
+                    iana_timezone_list.append(iana_timezone)
+                self.iana_timezone = iana_timezone_list
+        return self
+
+
+class IANATimeZone(object):
+    __attrs__ = ['title', 'name', 'link']
+
+    def __init__(self):
+        self.name = None
+        self.title = None
+        self.link = None
 
 
 class Entity(object):
@@ -121,7 +153,7 @@ class City(Entity):
 
 class ObjectEncoder(json.JSONEncoder):
     def default(self, obj):
-        if isinstance(obj, (TimeZone, City, Country)):
+        if isinstance(obj, (TimeZone, City, Country, IANATimeZone)):
             return json.dumps(obj.__dict__, ensure_ascii=False, default=lambda o: o.__dict__,
                               sort_keys=True)
         return json.JSONEncoder.default(self, obj)

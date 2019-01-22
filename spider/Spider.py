@@ -40,24 +40,12 @@ class Spider(object):
                 time_zone.name = time_zone_table_data[1].text.strip()
                 # print(time_zone.name)
                 # print(json.dumps(time_zone.__dict__, ensure_ascii=False))
-                time_zone = self.get_time_zone_detailed_info(time_zone)
+                time_zone_detailed_info_url = time_zone.link
+                soup = self.get_response_from_url(basic_url + time_zone_detailed_info_url)
+                time_zone = time_zone.get_time_zone_detailed_info(soup)
                 logging.info(json.dumps(time_zone.__dict__, ensure_ascii=False))
                 time_zones.append(time_zone)
         print(json.dumps(time_zones, ensure_ascii=False, cls=ObjectEncoder))
-
-    def get_time_zone_detailed_info(self, time_zone):
-        time_zone_detailed_info_url = time_zone.link
-        soup = self.get_response_from_url(basic_url + time_zone_detailed_info_url)
-        time_zone_detailed_info_soup = soup.find('div', class_='dataBlock dBColor3')
-        time_zone_detailed_info = time_zone_detailed_info_soup.find_all('div', class_='infoRow')
-        time_zone_detailed_info_title = time_zone_detailed_info_soup.find_all('h3', class_='infoRowTitle')
-        # print(time_zone_detailed_info)
-        if len(time_zone_detailed_info) > 2 and len(time_zone_detailed_info_title) > 2:
-            if time_zone.code + " " in time_zone_detailed_info_title[0].text:
-                time_zone.description = time_zone_detailed_info[0].text.strip()
-            if 'GMT' in time_zone_detailed_info_title[1].text:
-                time_zone.offset_time = time_zone_detailed_info[1].text.strip().replace(" ", "")
-        return time_zone
 
     def get_country_info(self):
         soup = self.get_response_from_url(basic_url + '/shi_jie2.php')
