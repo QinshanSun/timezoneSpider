@@ -21,21 +21,23 @@ class TimeZone(object):
         time_zone_detailed_info_title = time_zone_detailed_info_soup.find_all('h3', class_='infoRowTitle')
         # print(time_zone_detailed_info)
         if len(time_zone_detailed_info) > 2 and len(time_zone_detailed_info_title) > 2:
-            if self.code + " " in time_zone_detailed_info_title[0].text:
-                self.description = time_zone_detailed_info[0].text.strip()
-            if 'GMT' in time_zone_detailed_info_title[1].text:
-                self.utc_timezone = time_zone_detailed_info[1].text.strip().replace(" ", "")
-            if 'IANA' in time_zone_detailed_info_title[2].text:
-                iana_time_zone_table = time_zone_detailed_info[1].find('table', class_='dataTab1 genericBlock')
-                iana_time_zone_td_list = iana_time_zone_table.find_all('td')
-                iana_timezone_list = []
-                for iana_time_zone in iana_time_zone_td_list:
-                    iana_timezone = IANATimeZone()
-                    iana_timezone.link = iana_time_zone.a['href']
-                    iana_timezone.title = iana_time_zone.a['title']
-                    iana_timezone.name = iana_time_zone.text
-                    iana_timezone_list.append(iana_timezone)
-                self.iana_timezone = iana_timezone_list
+            for index in range(len(time_zone_detailed_info_title)):
+                if time_zone_detailed_info_title[index].text.startswith(self.code):
+                    self.description = time_zone_detailed_info[index].text.strip()
+                if 'GMT' in time_zone_detailed_info_title[index].text:
+                    self.utc_timezone = time_zone_detailed_info[index].text.strip().replace(" ", "")
+                if 'IANA' in time_zone_detailed_info_title[index].text:
+                    iana_time_zone_table = time_zone_detailed_info[index].find('table', class_='dataTab1 genericBlock')
+                    iana_time_zone_td_list = iana_time_zone_table.find_all('td')
+                    iana_timezone_list = []
+                    for iana_time_zone in iana_time_zone_td_list:
+                        if iana_time_zone.a is not None:
+                            iana_timezone = IANATimeZone()
+                            iana_timezone.link = iana_time_zone.a['href']
+                            iana_timezone.title = iana_time_zone.a['title']
+                            iana_timezone.name = iana_time_zone.text
+                            iana_timezone_list.append(iana_timezone)
+                    self.iana_timezone = iana_timezone_list
         return self
 
 

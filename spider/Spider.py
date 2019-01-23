@@ -41,9 +41,10 @@ class Spider(object):
                 # print(time_zone.name)
                 # print(json.dumps(time_zone.__dict__, ensure_ascii=False))
                 time_zone_detailed_info_url = time_zone.link
+                print(time_zone.name)
                 soup = self.get_response_from_url(basic_url + time_zone_detailed_info_url)
                 time_zone = time_zone.get_time_zone_detailed_info(soup)
-                logging.info(json.dumps(time_zone.__dict__, ensure_ascii=False))
+                # logging.info(json.dumps(time_zone.__dict__, ensure_ascii=False))
                 time_zones.append(time_zone)
         print(json.dumps(time_zones, ensure_ascii=False, cls=ObjectEncoder))
 
