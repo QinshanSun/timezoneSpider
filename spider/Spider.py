@@ -41,12 +41,12 @@ class Spider(object):
                 # print(time_zone.name)
                 # print(json.dumps(time_zone.__dict__, ensure_ascii=False))
                 time_zone_detailed_info_url = time_zone.link
-                print(time_zone.name)
                 soup = self.get_response_from_url(basic_url + time_zone_detailed_info_url)
                 time_zone = time_zone.get_time_zone_detailed_info(soup)
-                # logging.info(json.dumps(time_zone.__dict__, ensure_ascii=False))
+                # print(json.dumps(time_zone, ensure_ascii=False, cls=ObjectEncoder))
+                print(json.dumps(time_zone, ensure_ascii=False, cls=ObjectEncoder))
                 time_zones.append(time_zone)
-        print(json.dumps(time_zones, ensure_ascii=False, cls=ObjectEncoder))
+        logging.info(json.dumps(time_zones, ensure_ascii=False, cls=ObjectEncoder))
 
     def get_country_info(self):
         soup = self.get_response_from_url(basic_url + '/shi_jie2.php')
@@ -66,7 +66,15 @@ class Spider(object):
                         country_soup = self.get_response_from_url(basic_url + country.link)
                         country.get_en_name_for_entity(country_soup)
                         # print(json.dumps(country.__dict__, ensure_ascii=False, cls=ObjectEncoder))
-                        country.get_city_info_for_country(country_time_zone_tr.find_next_sibling())
+
+                        for sibling in country_time_zone_tr.find_next_siblings():
+                            print(country_time_zone_tr.get('class'))
+                            country_attr = country_time_zone_tr.get('class')
+                            sibling_attr = sibling.get('class')
+                            if country_attr == sibling_attr:
+                                country.get_city_info_for_country(sibling)
+                            else:
+                                break
                         country.get_detailed_info_for_country(country_soup)
                         if len(country.city) > 0:
                             for city in country.city:
@@ -92,7 +100,7 @@ spider = Spider()
 # spider.get_time_zone_basic_info()
 # spider.get_country_info()
 # city = City()
-spider.get_time_zone_basic_info()
+spider.get_country_info()
 # city.link = '/zh_shi/tirana_shi_zhong.php'
 # city.name = u"地拉那"
 

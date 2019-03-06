@@ -88,9 +88,8 @@ class Country(Entity):
                 city = City()
                 city.name = city_link.text
                 city.link = city_link['href']
-                city_list.append(city)
+                self.city.append(city)
                 # print(json.dumps(city.__dict__, ensure_ascii=False, cls=ObjectEncoder))
-        self.city = city_list
         print(json.dumps(self.__dict__, ensure_ascii=False, cls=ObjectEncoder))
         # country_list.append(json.dumps(country.__dict__, ensure_ascii=False, cls=ObjectEncoder))
 
