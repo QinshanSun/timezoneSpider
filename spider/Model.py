@@ -147,8 +147,28 @@ class City(Entity):
                     # print(city_detailed_info_list[index].text.strip().replace(" ", ""))
                     city_location_td_list = city_detailed_info_list[index].find_all('td')
                     if len(city_location_td_list) > 0:
+                        city_latitude_str = city_location_td_list[0].text.strip().replace(" ", "")
+                        p = re.compile(r'[\u4e00-\u9fa5]', re.S)
+                        city_latitude_direction = re.findall(p, city_latitude_str.strip())
+                        p2 = re.compile(r'\d*', re.S)
+                        if city_latitude_direction is not None and "北" == city_latitude_direction[0]:
+                            print(city_latitude_direction)
+                            city_latitude_value = re.findall(p2, city_latitude_str.strip())
+                        if city_latitude_direction is not None and "南" == city_latitude_direction[0]:
+                            print(city_latitude_direction)
+                            city_latitude_value = re.findall(p2, city_latitude_str.strip())
                         self.latitude = city_location_td_list[0].text.strip().replace(" ", "")
                     if len(city_location_td_list) > 1:
+                        city_longitude_str = city_location_td_list[1].text.strip().replace(" ", "")
+                        p = re.compile(r'[\u4e00-\u9fa5]', re.S)
+                        city_longitude_direction = re.findall(p, city_longitude_str.strip())
+                        p2 = re.compile(r'\d*', re.S)
+                        if "东" == city_longitude_direction:
+                            print(city_longitude_direction)
+                            city_longitude_value = re.findall(p2, city_longitude_str.strip())
+                        if "西" == city_longitude_direction:
+                            print(city_longitude_direction)
+                            city_longitude_value = re.findall(p2, city_latitude_str.strip())
                         self.longitude = city_location_td_list[1].text.strip().replace(" ", "")
 
 
