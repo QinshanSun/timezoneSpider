@@ -102,15 +102,22 @@ class Country(Entity):
                 if 'GMT' in city_detailed_info_title_list[index].text:
                     # print(city_detailed_info_list[index].text)
                     # print(city_detailed_info_list[index].text.strip().replace(" ", ""))
-                    city_offset_time_td = city_detailed_info_list[index].find_all('td')
-                    if len(city_offset_time_td) > 0:
-                        self.utc_timezone = city_offset_time_td[0].text.strip().replace(" ", "")
-                    if len(city_offset_time_td) > 1:
-                        self.is_summer_time = city_offset_time_td[1].text.strip().replace(" ", "")
+                    if city_detailed_info_list[index].find('table', class_='dataTab1 genericBlock') is None:
+                        city_offset_time_td = city_detailed_info_list[index].find_all('td')
+                        if len(city_offset_time_td) > 0:
+                            self.utc_timezone = city_offset_time_td[0].text.strip().replace(" ", "")
+                        if len(city_offset_time_td) > 1:
+                            self.is_summer_time = city_offset_time_td[1].text.strip().replace(" ", "")
+                    else:
+                        self.utc_timezone = "在此国家，各个城市夏令时时区各不相同。"
+                        self.is_summer_time = "在此国家，各个城市夏令时时区各不相同。"
 
                 if '夏令时' in city_detailed_info_title_list[index].text:
                     print(city_detailed_info_list[index].text.strip().replace(" ", ""))
-                    self.summer_time = city_detailed_info_list[index].text.strip().replace(" ", "")
+                    if city_detailed_info_list[index].find('table', class_='dataTab1 genericBlock') is None:
+                        self.summer_time = city_detailed_info_list[index].text.strip().replace(" ", "")
+                    else:
+                        self.summer_time = "在此国家，各个城市夏令时各不相同。"
 
 
 class City(Entity):
